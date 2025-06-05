@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+:root {
+    --flipkart-blue: #2874f0;
+    --flipkart-yellow: #ffd700;
+    --light-gray: #f1f3f6;
+    --text-gray: #212121;
+    --success-green: #388e3c;
+    --error-red: #d32f2f;
+    --white: #ffffff;
+    --border-gray: #e0e0e0;
+    --hover-blue: #1a5cd8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background: var(--light-gray);
+}
+
+/* Navigation */
+.navi {
+    background: var(--flipkart-blue);
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.left {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.ele {
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.ele:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.ele::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background: var(--flipkart-yellow);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.ele:hover::after {
+    width: 50%;
+}
+
+.search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    margin-left: auto;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+.search button {
+    background: var(--flipkart-yellow);
+    color: var(--text-gray);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.search button:hover {
+    background: #ffcc00;
+    transform: translateY(-1px);
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+
+.icon svg.bi-person-circle {
+    color: white;
+    width: 32px;
+    height: 32px;
+    transition: all 0.3s ease;
+}
+
+.icon:hover svg.bi-person-circle {
+    color: var(--flipkart-yellow);
+    transform: scale(1.15);
+}
+
+button {
+    background: white;
+    color: var(--flipkart-blue);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: var(--flipkart-yellow);
+    color: var(--text-gray);
+}
+
+/* Navigation link styles */
+.navi a {
+    display: inline-block;
+}
+
+.navi a:hover .ele {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Main Content */
+h2 {
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 26px;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
+
+/* Product Listing */
+.product-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 20px;
+}
+
+.product {
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-gray);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product img {
+    width: 100%;
+    max-width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin: 0 auto 16px;
+    border-radius: 8px;
+    background: var(--light-gray);
+    padding: 10px;
+}
+
+.product h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-gray);
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.product p.price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--success-green);
+    margin: 10px 0;
+}
+
+.product a {
+    display: inline-block;
+    background: var(--flipkart-blue);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.product a:hover {
+    background: var(--hover-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Error and No Results */
+.error, .no-results {
+    text-align: center;
+    color: var(--error-red);
+    font-size: 18px;
+    font-weight: 500;
+    margin: 30px 0;
+    padding: 20px;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Footer */
+footer {
+    background: #172337;
+    color: white;
+    padding: 60px 24px;
+    margin-top: 60px;
+    border-top: 4px solid var(--flipkart-blue);
+}
+
+.container.footer {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.foot-logo {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--flipkart-yellow);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.foot-icon {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.foot-icon div {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.foot-icon div:hover {
+    background: var(--flipkart-blue);
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(40, 116, 240, 0.5);
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+footer h4 {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+footer h4::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background: var(--flipkart-yellow);
+    bottom: -8px;
+    left: 0;
+}
+
+footer a {
+    color: #b0b0b0;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--flipkart-yellow);
+    padding-left: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navi {
+        padding: 10px;
+    }
+
+    .left {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .search {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .product-container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .product img {
+        max-width: 140px;
+        height: 140px;
+    }
+
+    .container.footer {
+        grid-template-columns: 1fr;
+    }
+
+    .foot-icon {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .ele {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .search input {
+        font-size: 13px;
+    }
+
+    .search button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    h2 {
+        font-size: 22px;
+        margin: 30px 0 15px;
+    }
+
+    .product {
+        padding: 15px;
+    }
+
+    .product h3 {
+        font-size: 16px;
+    }
+
+    .product p {
+        font-size: 13px;
+    }
+
+    .product p.price {
+        font-size: 16px;
+    }
+
+    .product a {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .error, .no-results {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .foot-logo {
+        font-size: 28px;
+    }
+
+    footer h4 {
+        font-size: 16px;
+    }
+
+    footer ul li {
+        font-size: 13px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="navi">
+        <div class="left">
+            <a href="{% url 'firstpage' %}"><div class="ele">Home</div></a>
+            <a href="{% url 'allproducts' %}"><div class="ele">Shop Now</div></a>
+            <a href="{% url 'aboutus' %}"><div class="ele">About Us</div></a>
+            <a href="{% url 'cart_view' %}"><div class="ele">View Cart</div></a>
+            <!-- <div class="search">
+                <form method="GET" action="{% url 'search_results' %}">
+                    <input type="text" name="q" placeholder="Search products..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div> -->
+            
+            <!-- {% if 'username' in request.session %}
+            <div><a href="{% url 'logout' %}"><button>Logout</button></a></div>
+            {% else %}
+            <div><a href="{% url 'userlogin' %}"><button>Login</button></a></div>
+            {% endif %} -->
+
+            <a href="{% url 'profile' %}" class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+</svg></a>
+        </div>
+    </div>
+   <h2>Search Results for "{{ query }}"</h2>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <div class="product-container">
+    {% if products %}
+        {% for product in products %}
+            <div class="product">
+                  {% if product.feedimage %}
+                    <img src="{{ product.feedimage.url }}" alt="{{ product.name }}" width="100">
+                {% endif %}
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.model }}</p>
+                <p>Price: {{ product.price }}</p>
+                <a href="{% url 'product' product.id %}">View Details</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+    </div>
+
+
+<footer>
+        <div class="container footer">
+            <div class="colm1">
+                <ul>
+                    <li class="foot-logo">Shoe Cart</li>
+                    <li class="foot-icon">
+                        <div class="f"><p>F</p></div>
+                        <div class="tw"><p>TW</p></div>
+                        <div class="in"><p>IN</p></div>
+                        <div class="x"><p>X</p></div>
+                    </li>
+                    <li>
+                        <p>© All rights reserved by Shoe Cart, Cochin, India.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="colm2">
+                <ul>
+                    <li><h4>Solutions</h4></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Order History</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="colm3">
+                <ul>
+                    <li><h4>About Us</h4></li>
+                    <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Site Map</a></li>
+                </ul>
+            </div>
+            <div class="colm4">
+                <ul>
+                    <li><h4>Contact Us</h4></li>
+                    <li>Kureekkadu, Ernakulam, Kerala</li>
+                    <li><a href="tel:+918606570657">+91-86065 70657</a></li>
+                    <li>Mon - Sat / 9:00 AM - 6:00 PM</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

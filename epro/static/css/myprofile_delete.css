@@ -1,0 +1,78 @@
+/* General Page Setup */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    padding: 30px;
+}
+
+/* Container & Card */
+.myprofile-container {
+    margin-top: 60px;
+}
+
+.myprofile-delete-card {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.myprofile-delete-header {
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.myprofile-delete-title {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Body */
+.myprofile-delete-body {
+    padding: 25px;
+}
+
+.myprofile-delete-text {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.myprofile-delete-warning {
+    color: #dc3545;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.myprofile-delete-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.myprofile-confirm-btn {
+    background-color: #dc3545;
+    border: none;
+}
+
+.myprofile-confirm-btn:hover {
+    background-color: #c82333;
+}
+
+.myprofile-cancel-btn {
+    background-color: #6c757d;
+    border: none;
+}
+
+.myprofile-cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .myprofile-delete-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

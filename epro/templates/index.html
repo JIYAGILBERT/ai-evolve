@@ -1,0 +1,280 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - ShoesKart</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <style>
+    /* Layout */
+    body.main {
+      font-family: Arial, sans-serif;
+      background-color: #f4f8ff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #111;
+      min-height: 100vh;
+      padding: 20px;
+      color: white;
+    }
+
+    .sidebar h2 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      color: #cccccc;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #333;
+    }
+
+    /* Main content */
+    .content {
+      flex-grow: 1;
+      padding: 40px;
+      background-color: #eef4fc;
+    }
+
+    .content h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #111;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      margin-bottom: 40px;
+    }
+
+    .form-columns {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .form-column {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    form label {
+      font-weight: 600;
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    form input[type="text"],
+    form input[type="file"],
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f1f1f1;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      border-color: #2874f0;
+      background-color: #fff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(40, 116, 240, 0.3);
+    }
+
+    form button {
+      background-color: #2874f0;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    form button:hover {
+      background-color: #1a5ed9;
+      transform: scale(1.05);
+    }
+
+    form img {
+      max-width: 200px;
+      border-radius: 8px;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      color: #d32f2f;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .form-columns {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body class="main">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>ShoesKart</h2>
+    <a href="{% url 'adminpage' %}">Home</a>
+    <a href="{% url 'add' %}">Add Product</a>
+    <a href="{% url 'admin_users' %}">Registered Users</a>
+    <a href="{% url 'admin_orders' %}">View Orders</a>
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Welcome</h1>
+
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+
+    {% if data1 %}
+    <form action="{% url 'edit_g' data1.id %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-columns">
+        <div class="form-column">
+          <label>Main Image:</label>
+          <input type="file" name="image">
+          {% if data1.feedimage %}
+            <img src="{{ data1.feedimage.url }}">
+          {% endif %}
+
+          <label>Image 1:</label>
+          <input type="file" name="image1">
+          {% if data1.image1 %}
+            <img src="{{ data1.image1.url }}">
+          {% endif %}
+
+          <label>Image 2:</label>
+          <input type="file" name="image2">
+          {% if data1.image2 %}
+            <img src="{{ data1.image2.url }}">
+          {% endif %}
+
+          <label>Image 3:</label>
+          <input type="file" name="image3">
+          {% if data1.image3 %}
+            <img src="{{ data1.image3.url }}">
+          {% endif %}
+        </div>
+
+        <div class="form-column">
+          <label>Name:</label>
+          <input type="text" name="todo" value="{{ data1.name }}">
+
+          <label>Price:</label>
+          <input type="text" name="date" value="{{ data1.price }}">
+
+          <label>Quantity:</label>
+          <input type="text" name="quant" value="{{ data1.quantity }}">
+
+          <label>Model:</label>
+          <input type="text" name="model" value="{{ data1.model }}">
+
+          <label>Offers:</label>
+          <input type="text" name="offers" value="{{ data1.offers }}">
+
+          <label>Description:</label>
+          <input type="text" name="description" value="{{ data1.discription }}">
+        </div>
+      </div>
+
+      <button type="submit">Update</button>
+    </form>
+
+    {% else %}
+
+    <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-columns">
+        <div class="form-column">
+          <label>Main Image:</label>
+          <input type="file" name="image" required>
+
+          <label>Image 1:</label>
+          <input type="file" name="image1" required>
+
+          <label>Image 2:</label>
+          <input type="file" name="image2" required>
+
+          <label>Image 3:</label>
+          <input type="file" name="image3" required>
+        </div>
+
+        <div class="form-column">
+          <label>Name:</label>
+          <input type="text" name="todo">
+
+          <label>Price:</label>
+          <input type="text" name="date">
+
+          <label>Quantity:</label>
+          <input type="text" name="quant">
+
+          <label>Model:</label>
+          <input type="text" name="model">
+
+          <label>Offers:</label>
+          <input type="text" name="offers">
+
+          <label>Description:</label>
+          <input type="text" name="description">
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+
+    <div>
+      {% for i in gallery_images %}
+        {% if i.feedimage %}
+          <img src="{{ i.feedimage.url }}" height="150">
+        {% else %}
+          <p>No image for this gallery item</p>
+        {% endif %}
+      {% empty %}
+        <p>No images uploaded yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+</body>
+</html>

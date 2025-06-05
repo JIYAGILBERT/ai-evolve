@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/myprofile.css' %}">
+
+    <title>Document</title>
+</head>
+<body>
+    
+
+<div class="myprofile-container container">
+    <div class="myprofile-row row">
+        <div class="myprofile-delete-col col-md-6 offset-md-3">
+            <div class="myprofile-delete-card card">
+                <div class="myprofile-delete-header card-header bg-danger text-white">
+                    <h3 class="myprofile-delete-title">Delete Address</h3>
+                </div>
+                <div class="myprofile-delete-body card-body">
+                    <p class="myprofile-delete-text">Are you sure you want to delete the address for "{{ address.name }}"?</p>
+                    <p class="myprofile-delete-warning">This action cannot be undone.</p>
+                    
+                    <form method="post" class="myprofile-delete-form">
+                        {% csrf_token %}
+                        <div class="myprofile-delete-buttons form-group">
+                            <button type="submit" class="myprofile-confirm-btn btn btn-danger">Delete</button>
+                            <a href="{% url 'profile' %}" class="myprofile-cancel-btn btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

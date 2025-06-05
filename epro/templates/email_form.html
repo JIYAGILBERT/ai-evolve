@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Email{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    
+    {% if errors %}
+        <div class="error-message">
+            {% for field, error in errors.items %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="{{ email|default_if_none:'' }}" required>
+
+    <button type="submit" class="btn">Update Email</button>
+</form>
+{% endblock %}

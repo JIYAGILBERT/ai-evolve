@@ -1,0 +1,369 @@
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <style>
+        /* General Styling */
+        body.main {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2874f0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color:rgb(1, 18, 45);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            color: white;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            background-color: #1a5bb8;
+            border-radius: 5px;
+        }
+
+        .navbar button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar button:hover {
+            background-color: #e64a19;
+        }
+
+      /* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the minimum width */
+    gap: 15px; /* Reduce the gap between items */
+    padding: 20px;
+    max-width: 800px; /* Set a maximum width for the entire grid */
+    margin: 0 auto; /* Center the grid within the page */
+}
+
+.product-grid div {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 90%; /* Minimize the individual product card width */
+    margin: 0 auto; /* Center the product cards */
+}
+
+
+        /* Image Styling */
+        .product-grid img {
+            max-width: 150px; /* Set a maximum width for the images */
+            height: 200px; /* Maintain a consistent height */
+            object-fit: cover; /* Crop the image if necessary to fit dimensions */
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .product-grid span {
+            display: block;
+            font-size: 1rem;
+            margin: 5px 0;
+            color: #555;
+        }
+
+        /* Edit Button Styling */
+.edit-button {
+    background-color: #4caf50; /* Green background */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Delete Button Styling */
+.delete-button {
+    background-color: #f44336; /* Red background */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .navbar .nav-links {
+                justify-content: center;
+                gap: 15px;
+            }
+        }
+        
+    </style>
+</head>
+<body class="main">
+    <div class="navbar">
+        <div class="logo">
+            <h2 style="margin: 0; font-size: 1.5rem;">Shoes Kart</h2>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'add' %}"><button>Add Product</button></a>
+            <a href="{% url 'logout' %}">
+                <button>Logout</button></a>
+                <a href="{% url 'admin_users' %}"><button>View Registered Users</button></a>
+                <a href="{% url 'admin_orders' %}"><button>View Orders</button></a>
+        </div>
+    </div>
+
+    <h1>Welcome</h1>
+    <div class="product-grid">
+        {% for i in gallery_images %}
+        <div>
+            <img src="{{ i.feedimage.url }}" alt="Gallery Image">
+            <span>{{ i.name }}</span>
+            <span>{{ i.price }}</span>
+            <span>{{ i.model }}</span>
+            <a href="{% url 'deletion' i.id %}"><button class="delete-button">Delete</button></a>
+            <a href="{% url 'edit_g' i.id %}"><button class="edit-button">Edit</button></a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html> -->
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Products</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <style>
+    /* General Styling */
+    body.main {
+      font-family: Arial, sans-serif;
+      background-color: #f4f8ff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+      width: 220px;
+      background-color: #111;
+      min-height: 100vh;
+      padding: 20px;
+      color: white;
+    }
+
+    .sidebar h2 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      color:	#cccccc;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #333;
+    }
+
+    /* Main Content */
+    .content {
+      flex-grow: 1;
+      padding: 40px;
+      background-color: #eef4fc;
+    }
+
+    .content h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #111;
+    }
+
+    /* Table Styling */
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-table th, .product-table td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .product-table th {
+      background-color: black;
+      color: 	#cccccc;
+      font-size: 16px;
+    }
+
+    .product-table td {
+      font-size: 15px;
+      color: #333;
+    }
+
+    .product-table img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Buttons */
+    .edit-button, .delete-button {
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 5px;
+    }
+
+    .edit-button {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .edit-button:hover {
+      background-color: #388e3c;
+    }
+
+    .delete-button {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .delete-button:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+
+<body class="main">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>ShoesKart</h2>
+    <a href="{% url 'adminpage' %}">Home</a>
+    <a href="{% url 'add' %}">Add Product</a>
+    <a href="{% url 'admin_users' %}">Registered Users</a>
+    <a href="{% url 'admin_orders' %}">View Orders</a>
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>All Products</h1>
+
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Model</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in gallery_images %}
+        <tr>
+          <td><img src="{{ i.feedimage.url }}" alt="Product Image"></td>
+          <td>{{ i.name }}</td>
+          <td>₹{{ i.price }}</td>
+          <td>{{ i.model }}</td>
+          {% if i.quantity > 0 %}
+          <td style="color: green;">{{ i.quantity }}</td>
+          {% else %}
+          <td style="color: red;">Out of Stock</td>
+          {% endif %}
+          <td>
+            <a href="{% url 'edit_g' i.id %}"><button class="edit-button">Edit</button></a>
+            <a href="{% url 'deletion' i.id %}"><button class="delete-button">Delete</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>
+

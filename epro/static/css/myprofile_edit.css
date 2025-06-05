@@ -1,0 +1,83 @@
+/* Base Setup */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    padding: 30px;
+}
+
+/* Container */
+.myprofile-container {
+    margin-top: 40px;
+}
+
+/* Card Styles */
+.myprofile-form-card {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.myprofile-form-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 20px;
+}
+
+.myprofile-form-title {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Form Body */
+.myprofile-form-body {
+    padding: 25px;
+}
+
+.myprofile-label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.myprofile-input {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.myprofile-error {
+    font-size: 0.875em;
+    color: #dc3545;
+    margin-top: 5px;
+}
+
+/* Buttons */
+.myprofile-button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.myprofile-save-btn {
+    background-color: #28a745;
+    border: none;
+}
+
+.myprofile-save-btn:hover {
+    background-color: #218838;
+}
+
+.myprofile-cancel-btn {
+    background-color: #6c757d;
+    border: none;
+}
+
+.myprofile-cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .myprofile-button-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

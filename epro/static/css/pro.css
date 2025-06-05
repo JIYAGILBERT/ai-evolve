@@ -1,0 +1,123 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    padding: 20px;
+}
+
+/* Container & Card */
+.myprofile-container {
+    margin-top: 30px;
+}
+
+.myprofile-card {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.myprofile-card-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 20px;
+}
+
+.myprofile-title {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Welcome Message */
+.myprofile-welcome {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+
+/* Section Headers */
+.myprofile-section-title {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Divider */
+.myprofile-divider {
+    margin: 30px 0;
+}
+
+/* Buttons */
+.myprofile-edit-username-btn,
+.myprofile-edit-email-btn,
+.myprofile-add-btn,
+.myprofile-edit-btn,
+.myprofile-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.myprofile-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Address Cards */
+.myprofile-address-card {
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.myprofile-address-header {
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.myprofile-address-name {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.myprofile-address-body {
+    padding: 15px;
+}
+
+.myprofile-address-text,
+.myprofile-phone-text {
+    margin-bottom: 10px;
+}
+
+/* Buttons Group */
+.myprofile-actions-group .btn {
+    margin-right: 5px;
+}
+
+/* Empty State */
+.myprofile-empty-alert {
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .myprofile-edit-username-btn,
+    .myprofile-edit-email-btn,
+    .myprofile-add-btn {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .myprofile-button-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .myprofile-actions-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .myprofile-actions-group .btn {
+        margin-bottom: 8px;
+    }
+}

@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <style>
+        :root {
+            --flipkart-blue: #2874f0;
+            --flipkart-yellow: #ffd700;
+            --light-gray: #f1f3f6;
+            --text-gray: #212121;
+            --success-green: #388e3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navi {
+            background: var(--flipkart-blue);
+            padding: 12px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .left {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .ele {
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+            border-radius: 4px;
+        }
+
+        .ele:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .navi a {
+            text-decoration: none;
+        }
+
+        .navi button {
+            background-color: white;
+            color: var(--flipkart-blue);
+            font-weight: 500;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .navi button:hover {
+            background-color: #ffcc00;
+        }
+
+        /* Success Container */
+        .success-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .success-container h1 {
+            color: var(--success-green);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .success-container p {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin: 10px 0;
+        }
+
+        /* Order Items */
+        .order-item {
+            margin: 15px 0;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .order-item strong {
+            color: var(--text-gray);
+        }
+
+        /* Continue Shopping Button */
+        .success-container a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--flipkart-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .success-container a:hover {
+            background-color: #1a5bb8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .success-container {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            .success-container h1 {
+                font-size: 24px;
+            }
+
+            .order-item {
+                padding: 10px;
+            }
+
+            .order-item p {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navi">
+        <div class="left">
+            <a href="{% url 'firstpage' %}"><div class="ele">Home</div></a>
+            <a href="{% url 'allproducts' %}"><div class="ele">Shop Now</div></a>
+            <a href="{% url 'review' %}"><div class="ele">Reviews</div></a>
+            <a href="{% url 'aboutus' %}"><div class="ele">About Us</div></a>
+            <a href="{% url 'cart_view' %}"><div class="ele">View Cart</div></a>
+            {% if 'username' in request.session %}
+                <div><a href="{% url 'logout' %}"><button>Logout</button></a></div>
+            {% else %}
+                <div><a href="{% url 'userlogin' %}"><button>Login</button></a></div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="success-container">
+        <h1>Order Placed Successfully!</h1>
+        <p>Thank you for your purchase. An email has been sent to the admin for processing.</p>
+        {% if orders %}
+            <h3>Your Recent Orders:</h3>
+            {% for order in orders %}
+                <div class="order-item">
+                    <p><strong>Order ID:</strong> {{ order.id }}</p>
+                    <p><strong>Product:</strong> {{ order.product.name }}</p>
+                    <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+                    <p><strong>Total Price:</strong> ₹{{ order.total_price }}</p>
+                    <p><strong>Address:</strong> {{ order.address }}</p>
+                    <p><strong>Payment Method:</strong> {{ order.get_payment_method_display }}</p>
+                    <p><strong>Status:</strong> {{ order.status }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <a href="{% url 'firstpage' %}">Continue Shopping</a>
+    </div>
+</body>
+</html>

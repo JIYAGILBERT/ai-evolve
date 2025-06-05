@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ action }} Address{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    
+    {% if errors %}
+        <div class="error-message">
+            {% for field, error in errors.items %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="{{ name|default_if_none:'' }}" required>
+
+    <label for="address">Address:</label>
+    <textarea name="address" id="address" required>{{ address|default_if_none:'' }}</textarea>
+
+    <label for="phone">Phone:</label>
+    <input type="text" name="phone" id="phone" value="{{ phone|default_if_none:'' }}" maxlength="10" required>
+
+    <button type="submit" class="btn">{{ action }} Address</button>
+</form>
+{% endblock %}

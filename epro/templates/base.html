@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Shose Cart{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Flipkart-Themed CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f1f3f6;
+            color: #212121;
+            line-height: 1.5;
+        }
+
+        /* Navigation Bar */
+        .navi {
+            background-color: #2874f0;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .left a {
+            text-decoration: none;
+        }
+
+        .ele {
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+
+        .ele:hover {
+            background-color: #1e5bb7;
+        }
+
+        .search {
+            position: relative;
+            width: 300px;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .search input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #2874f0;
+        }
+
+        .search::before {
+            content: '🔍';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #878787;
+        }
+
+        .ice {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ice1 {
+            background-color: white;
+            color: #2874f0;
+            padding: 6px 10px;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+
+        .ice1:hover {
+            background-color: #e0e0e0;
+            color: #1e5bb7;
+        }
+
+        .navi button {
+            background-color: #ffffff;
+            color: #2874f0;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .navi button:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Form Styling */
+        form {
+            background-color: white;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #212121;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #fafafa;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #2874f0;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            background-color: #fb641b;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #e55a0e;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        .profile-section h2 {
+            font-size: 22px;
+            font-weight: 500;
+            color: #2874f0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2874f0;
+            padding-bottom: 8px;
+        }
+
+        .profile-section p {
+            font-size: 15px;
+            color: #212121;
+            margin: 10px 0;
+        }
+
+        .action-btn {
+            background-color: #2874f0;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-right: 10px;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            background-color: #1e5bb7;
+        }
+
+        .delete-btn {
+            background-color: #d84d0c;
+        }
+
+        .delete-btn:hover {
+            background-color: #b83b0a;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #2874f0;
+            color: white;
+            font-weight: 500;
+        }
+
+        td {
+            color: #212121;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Error Messages */
+        .error-message {
+            color: #d84d0c;
+            font-size: 14px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .error-message p {
+            margin: 5px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #172337;
+            color: #878787;
+            padding: 40px 0;
+            font-size: 14px;
+        }
+
+        .footer-block1 .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .foot-icon {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .foot-icon div {
+            width: 32px;
+            height: 32px;
+            background-color: white;
+            color: #2874f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .foot-icon div:hover {
+            background-color: #e0e0e0;
+        }
+
+        .colm2 li, .colm3 li, .colm4 li {
+            margin: 8px 0;
+            color: #878787;
+        }
+
+        .colm4 a {
+            color: #878787;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .colm4 a:hover {
+            color: #ffffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navi {
+                flex-direction: column;
+                padding: 15px;
+                gap: 10px;
+            }
+
+            .left {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .search {
+                width: 100%;
+            }
+
+            .search input {
+                width: 100%;
+            }
+
+            .footer-block1 .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-container, form {
+                width: 90%;
+                margin: 20px auto;
+                padding: 20px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .action-btn {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .navi button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navi">
+        <div class="left">
+            <a href="{% url 'firstpage' %}"><div class="ele">Shop Now</div></a>
+            <a href="{% url 'review' %}"><div class="ele">Reviews</div></a>
+            <a href="{% url 'aboutus' %}"><div class="ele">About Us</div></a>
+            {% comment %} <div class="ele">Contact Us</div> {% endcomment %}
+            {% comment %} <div class="search">
+                <input class="ss" type="search" placeholder="Search for Products" id="search" name="q">
+            </div> {% endcomment %}
+            {% if 'username' in request.session %}
+                <div><a href="{% url 'profile' %}"><div class="ele">My Profile</div></a></div>
+                <div><a href="{% url 'logout' %}"><button>Logout</button></a></div>
+            {% else %}
+                <div><a href="{% url 'userlogin' %}"><button>Login</button></a></div>
+            {% endif %}
+        </div>
+    </div> 
+
+    {% if messages %}
+        <div class="error-message">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <div class="footer-block1">
+            <div class="container">
+                <div class="colm1">
+                    <ul>
+                        <li class="foot-logo"></li>
+                        <li class="foot-icon">
+                            <div class="f"><p>F</p></div>
+                            <div class="tw"><p>TW</p></div>
+                            <div class="in"><p>IN</p></div>
+                            <div class="x"><p>X</p></div>
+                        </li>
+                        <li>
+                            <p>© All rights reserved by Shose Cart, Cochin, India.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="colm2">
+                    <ul>
+                        <li><h4>Solutions</h4></li>
+                        <li><a href="{% url 'profile' %}">My Account</a></li>
+                        <li>Track Your Order</li>
+                        <li>Order History</li>
+                        <li>Payment Methods</li>
+                        <li>Privacy Policy</li>
+                    </ul>
+                </div>
+                <div class="colm3">
+                    <ul>
+                        <li><h4>About Us</h4></li>
+                        <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                        <li>Terms & Conditions</li>
+                        <li>Privacy Policy</li>
+                        <li>Return Policy</li>
+                        <li>Site Map</li>
+                    </ul>
+                </div>
+                <div class="colm4">
+                    <ul>
+                        <li><h4>Contact Us</h4></li>
+                        <li><p>Kureekkadu, Ernakulam, Kerala</p></li>
+                        <li><a href="tel:+918606570657">+91-86065 70657</a></li>
+                        <li><p>Mon - Sat / 9:00 AM - 6:00 PM</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

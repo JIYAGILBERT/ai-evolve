@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Cart - About Us</title>
+    <style>
+        :root {
+            --flipkart-blue: #2874f0;
+            --flipkart-yellow: #ffd700;
+            --light-gray: #f1f3f6;
+            --text-gray: #212121;
+            --success-green: #388e3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        a{
+            style:none;
+            text-decoration: none;
+
+        }
+
+        body {
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navi {
+            background: var(--flipkart-blue);
+            padding: 12px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .left {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .ele {
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+            border-radius: 4px;
+        }
+
+        .ele:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .search {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            max-width: 400px;
+            margin-left: auto;
+        }
+
+        .search input {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search button {
+            background: var(--flipkart-yellow);
+            color: black;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .search button:hover {
+            background: #ffcc00;
+        }
+
+        .ss {
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 4px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .ice {
+            display: flex;
+            gap: 12px;
+        }
+
+        .ice1 {
+            background: white;
+            color: var(--flipkart-blue);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .ice1:hover {
+            transform: scale(1.1);
+        }
+
+        button {
+            background: white;
+            color: var(--flipkart-blue);
+            border: none;
+            padding: 8px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: var(--flipkart-yellow);
+        }
+
+        /* Navigation link styles */
+        .navi a {
+            display: inline-block;
+        }
+
+        .navi a:hover .ele {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Content Section */
+        .container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        /* New and updated icon class */
+.icon {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+
+.icon svg.bi-person-circle {
+    color: white;
+    width: 32px; /* Increased size */
+    height: 32px; /* Increased size */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.icon:hover svg.bi-person-circle {
+    color: #fcfcfc; /* Orange accent on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+        .hero {
+            background: linear-gradient(135deg, #e0ebea, #448ee9eb);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            color: var(--flipkart-blue);
+            font-size: 2.8em;
+            margin: 0 0 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            color: var(--text-gray);
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .content h2 {
+            color: var(--flipkart-blue);
+            font-size: 2em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #424242;
+            margin-bottom: 20px;
+        }
+
+        .content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content ul li {
+            font-size: 1.1em;
+            color: #424242;
+            margin: 12px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .content ul li::before {
+            content: '✔';
+            color: var(--success-green);
+            position: absolute;
+            left: 0;
+            font-size: 1.3em;
+        }
+
+        .team-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .team-member {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            color: var(--flipkart-blue);
+            font-size: 1.3em;
+            margin: 0 0 10px;
+        }
+
+        .team-member p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #172337;
+            color: white;
+            padding: 48px 24px;
+            margin-top: 48px;
+        }
+
+        .container.footer {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .foot-icon {
+            display: flex;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .foot-icon div {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .foot-icon div:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer ul li {
+            margin-bottom: 12px;
+            color: #878787;
+        }
+
+        footer h4 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .foot-logo {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--flipkart-blue);
+            margin-bottom: 25px;
+        }
+
+        /* Footer link styles */
+        footer a {
+            color: #878787;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navi {
+                padding: 12px;
+            }
+
+            .left {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .search {
+                max-width: 100%;
+                margin-left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .container.footer {
+                grid-template-columns: 1fr;
+            }
+
+            .foot-icon {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .content h2 {
+                font-size: 1.5em;
+            }
+
+            .content p, .content ul li {
+                font-size: 1em;
+            }
+
+            .team-member {
+                width: 100%;
+            }
+
+            button {
+                padding: 8px 16px;
+            }
+
+            .ele {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navi">
+        <div class="left">
+            <a href="{% url 'firstpage' %}"><div class="ele">Home</div></a>
+            <a href="{% url 'allproducts' %}"><div class="ele">Shop Now</div></a>
+            <a href="{% url 'aboutus' %}"><div class="ele">About Us</div></a>
+            <a href="{% url 'cart_view' %}"><div class="ele">View Cart</div></a>
+            <div class="search">
+                <form method="GET" action="{% url 'search_results' %}">
+                    <input type="text" name="q" placeholder="Search products..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <!-- <div class="ice">
+                <div class="ice1">F</div>
+                <div class="ice1">IN</div>
+            </div>
+            {% if 'username' in request.session %}
+            <div><a href="{% url 'logout' %}"><button>Logout</button></a></div>
+            {% else %}
+            <div><a href="{% url 'userlogin' %}"><button>Login</button></a></div>
+            {% endif %} -->
+
+              <a href="{% url 'profile' %}" class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+</svg></a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>About Shoe Cart</h1>
+        <p>Discover our passion for delivering stylish, comfortable, and affordable footwear to every corner of the world.</p>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h2>Our Story</h2>
+            <p>Founded in the heart of Kerala, Shoe Cart is your go-to destination for high-quality footwear. We started with a simple vision: to make stylish and comfortable shoes accessible to everyone. Today, we pride ourselves on offering a curated selection of footwear that blends fashion with functionality.</p>
+
+            <h2>Our Mission</h2>
+            <p>At Shoe Cart, our mission is to empower our customers with confidence through footwear that complements their lifestyle. We strive to provide a seamless shopping experience, exceptional quality, and unbeatable value.</p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Curated Collection – From casual sneakers to formal shoes, we have it all.</li>
+                <li>Quality Assurance – Every pair is crafted with care and precision.</li>
+                <li>Customer-Centric – Your satisfaction is our top priority.</li>
+                <li>Affordable Luxury – Premium footwear at prices that won’t break the bank.</li>
+            </ul>
+
+            <h2>Meet Our Team</h2>
+            <!-- <div class="team-section">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member">
+                    <h3>John Doe</h3>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member">
+                    <h3>Jane Smith</h3>
+                    <p>Head of Design</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/100" alt="Team Member">
+                    <h3>Mike Johnson</h3>
+                    <p>Customer Support Lead</p>
+                </div>
+            </div> -->
+
+            <h2>Contact Us</h2>
+            <p><strong><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg> Location:</strong> Kureekkadu, Ernakulam, Kerala</p>
+            <p><strong><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+</svg> Call Us:</strong> <a href="tel:+918606570657">+91-86065 70657</a></p>
+            <p><strong><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
+  <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2zm3.708 6.208L1 11.105V5.383zM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2z"/>
+  <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648m-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
+</svg> Email:</strong> <a href="mailto:support@shoecart.com">support@shoecart.com</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer">
+            <div class="colm1">
+                <ul>
+                    <li class="foot-logo">Shoe Cart</li>
+                    <li class="foot-icon">
+                        <div class="f"><p>F</p></div>
+                        <div class="tw"><p>TW</p></div>
+                        <div class="in"><p>IN</p></div>
+                        <div class="x"><p>X</p></div>
+                    </li>
+                    <li>
+                        <p>© All rights reserved by Shoe Cart, Cochin, India.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="colm2">
+                <ul>
+                    <li><h4>Solutions</h4></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Order History</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="colm3">
+                <ul>
+                    <li><h4>About Us</h4></li>
+                    <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Site Map</a></li>
+                </ul>
+            </div>
+            <div class="colm4">
+                <ul>
+                    <li><h4>Contact Us</h4></li>
+                    <li>Kureekkadu, Ernakulam, Kerala</li>
+                    <li><a href="tel:+918606570657">+91-86065 70657</a></li>
+                    <li>Mon - Sat / 9:00 AM - 6:00 PM</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

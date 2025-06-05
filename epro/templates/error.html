@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        .error-message {
+            color: red;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        a {
+            color: #2874f0;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Error</h1>
+    <div class="error-message">
+        {{ message|default:"An unexpected error occurred. Please try again later." }}
+    </div>
+    <a href="{% url 'buy_now' product_id=product_id %}">Go Back</a>
+</body>
+</html>

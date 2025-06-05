@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Username{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    
+    {% if errors %}
+        <div class="error-message">
+            {% for field, error in errors.items %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" value="{{ username|default_if_none:'' }}" required>
+
+    <button type="submit" class="btn">Update Username</button>
+</form>
+{% endblock %}

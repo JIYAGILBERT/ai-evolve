@@ -1,0 +1,132 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/userregister.css' %}">
+    <style>
+        /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+ /*background-color: #f1f3f6;*/
+  background-image: url(../static/images/gool3.avif); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: #212121; /* Neutral text color */
+}
+
+/* Form Container */
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border-top: 5px solid #ffd814; /* Flipkart yellow accent */
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #2874f0; /* Flipkart blue */
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    border-color: #2874f0;
+    outline: none;
+    box-shadow: 0 0 8px rgba(40, 116, 240, 0.3);
+}
+
+/* Submit Button */
+form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #2874f0; /* Flipkart blue */
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0d58d1; /* Darker blue for hover */
+    transform: scale(1.02); /* Slight zoom effect */
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    form {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="submit"] {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        <h1>user register</h1>
+        {% csrf_token %}
+        <input type="text" name="username" id="" placeholder="username">
+        <input type="email" name="email" placeholder="email">
+        <input type="password" name="password" id="" placeholder="password">
+        <input type="password" name="confpassword" id="" placeholder="confirmpassword">
+        <input type="submit" value="submit">
+
+        {% if messages %}
+        <!-- <div class="alert alert-success mt-3"> -->
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        <!-- </div> -->
+        {% endif %}
+    </form>
+    
+</body>
+</html>

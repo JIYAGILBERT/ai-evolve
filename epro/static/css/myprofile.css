@@ -1,0 +1,183 @@
+/* General Body & Typography */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 30px;
+}
+
+/* Containers */
+.myprofile-container {
+    margin-top: 40px;
+}
+
+/* Card Styling */
+.myprofile-form-card,
+.myprofile-delete-card,
+.myprofile-card,
+.myprofile-address-card {
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Card Headers */
+.myprofile-form-header,
+.myprofile-delete-header,
+.myprofile-card-header {
+    padding: 20px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Titles */
+.myprofile-form-title,
+.myprofile-delete-title,
+.myprofile-title,
+.myprofile-section-title {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Form Elements */
+.myprofile-label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.myprofile-input,
+.myprofile-textarea {
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 1rem;
+}
+
+.myprofile-error {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+/* Buttons */
+.myprofile-button-group,
+.myprofile-delete-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.myprofile-save-btn {
+    background-color: #28a745;
+    border: none;
+}
+
+.myprofile-save-btn:hover {
+    background-color: #218838;
+}
+
+.myprofile-cancel-btn {
+    background-color: #6c757d;
+    border: none;
+}
+
+.myprofile-cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.myprofile-confirm-btn {
+    background-color: #dc3545;
+    border: none;
+}
+
+.myprofile-confirm-btn:hover {
+    background-color: #c82333;
+}
+
+.myprofile-add-btn {
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+}
+
+.myprofile-add-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Profile Info Display */
+.myprofile-welcome,
+.myprofile-username,
+.myprofile-email {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.myprofile-edit-username-btn,
+.myprofile-edit-email-btn,
+.myprofile-edit-btn,
+.myprofile-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.myprofile-icon,
+.myprofile-edit-icon,
+.myprofile-delete-icon {
+    font-size: 0.9rem;
+}
+
+/* Address Cards */
+.myprofile-address-card {
+    transition: transform 0.2s ease;
+}
+
+.myprofile-address-card:hover {
+    transform: translateY(-5px);
+}
+
+.myprofile-address-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.myprofile-address-text,
+.myprofile-phone-text {
+    font-size: 0.95rem;
+}
+
+/* Alert */
+.myprofile-empty-alert {
+    font-size: 1rem;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+/* Divider */
+.myprofile-divider {
+    margin: 30px 0;
+    border-top: 2px solid #dee2e6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .myprofile-button-group,
+    .myprofile-delete-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .myprofile-edit-username-btn,
+    .myprofile-edit-email-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}

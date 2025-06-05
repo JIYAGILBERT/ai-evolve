@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+<body>
+{% block content %}
+<form method="post">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "{{ razorpay_key }}",
+            "amount": {{ amount }},  // Amount in paise
+            "currency": "INR",
+            "name": "Shose Cart",
+            "description": "Purchase of {{ order.product.name }}",
+            "image": "https://yourdomain.com/logo.png",
+            "order_id": "{{ order.provider_order_id }}",
+            "callback_url": "{{ callback_url }}",
+            "redirect": true,
+            "prefill": {
+                "name": "{{ name }}",
+                "email": "{{ order.user.email|default:'customer@example.com' }}",
+                "contact": "{{ order.user.phone_number|default:'9999999999' }}"
+            },
+            "notes": {
+                "order_id": "{{ order.id }}"
+            },
+            "theme": {
+                "color": "#2874f0"
+            }
+        };
+
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function(response) {
+            alert('Payment failed: ' + response.error.description);
+            window.location.href = "{{ callback_url }}?error=" + encodeURIComponent(response.error.description);
+        });
+        // Automatically open Razorpay checkout
+        window.onload = function() {
+            rzp1.open();
+        };
+    </script>
+</form>
+{% endblock %}
+</body>
+</html>

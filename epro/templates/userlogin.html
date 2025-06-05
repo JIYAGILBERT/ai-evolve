@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/userlogin.css' %}"/>
+    <style>
+        /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+   /* background-color: #f1f3f6; */
+   background-image:url('../static/images/gool1.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: #212121; /* Neutral text color */
+}
+
+/* Login Form Container */
+div {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border-top: 5px solid #ffd814; /* Flipkart yellow accent */
+}
+
+/* Heading */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2874f0; /* Flipkart blue */
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #2874f0; /* Flipkart blue on focus */
+    outline: none;
+    box-shadow: 0 0 8px rgba(40, 116, 240, 0.3);
+}
+
+/* Submit Button */
+form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #2874f0; /* Flipkart blue */
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0d58d1; /* Darker blue for hover */
+    transform: scale(1.02); /* Slight zoom effect */
+}
+
+/* Links Styling */
+a {
+    display: inline-block;
+    margin: 10px 5px;
+    text-decoration: none;
+    color: #2874f0; /* Flipkart blue */
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0d58d1; /* Darker blue on hover */
+    text-decoration: underline;
+}
+
+/* Paragraph for Results */
+p {
+    margin-top: 10px;
+    color: #d32f2f; /* Highlight error messages in red */
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    div {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    form input[type="text"],
+    form input[type="password"],
+    form input[type="submit"] {
+        font-size: 14px;
+    }
+
+    a {
+        font-size: 12px;
+    }
+}
+
+    </style>
+    <title>Mail App</title>
+</head>
+<body>
+    <div>
+        <h1>user login</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            usernmae
+            <input type="text" name="username" id="">
+            password
+            <input type="password" name="password" id="">
+            <input type="submit" value="submit">
+        </form>
+        <a href="{% url 'forgotpassword' %}">forgotpassword</a>
+        <a href="{% url 'usersignup' %}">signup</a>
+        <p>{{ result }}</p> 
+
+        {% if messages %}
+        <!-- <div class="alert alert-success mt-3"> -->
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        <!-- </div> -->
+        {% endif %}
+    </div>
+
+
+    
+  
+</body>
+</html>

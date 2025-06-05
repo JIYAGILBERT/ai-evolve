@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-section">
+        <h2>User Information</h2>
+        <p><strong>Username:</strong> {{ username }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+        <a href="{% url 'edit_username' %}" class="action-btn">Edit Username</a>
+        <a href="{% url 'edit_email' %}" class="action-btn">Edit Email</a>
+        <a href="{% url 'change_password' %}" class="action-btn">Change Password</a>
+    </div>
+
+    <div class="profile-section">
+        <h2>Saved Addresses</h2>
+        {% if addresses %}
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+                {% for address in addresses %}
+                    <tr>
+                        <td>{{ address.name }}</td>
+                        <td>{{ address.address }}</td>
+                        <td>{{ address.phone }}</td>
+                        <td>
+                            <a href="{% url 'edit_address' address.id %}" class="action-btn">Edit</a>
+                            <a href="{% url 'delete_address' address.id %}" class="action-btn delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No addresses saved.</p>
+        {% endif %}
+        <a href="{% url 'add_address' %}" class="action-btn" style="margin-top: 20px; display: inline-block;">Add New Address</a>
+    </div>
+
+    <div class="profile-section">
+        <h2>Booking History</h2>
+        {% if orders %}
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Address</th>
+                    <th>Payment Method</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.product.name }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>₹{{ order.total_price }}</td>
+                        <td>{{ order.address }}</td>
+                        <td>{{ order.payment_method }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.created_at|date:"Y-m-d" }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No bookings found.</p>
+        {% endif %}
+    </div>
+
+      {% if 'username' in request.session %}
+            <div><a href="{% url 'logout' %}"><button>Logout</button></a></div>
+            {% else %}
+            <div><a href="{% url 'userlogin' %}"><button>Login</button></a></div>
+            {% endif %}
+</div>
+{% endblock %}
+
