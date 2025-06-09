@@ -490,6 +490,8 @@ def delete_g(request,id):
     feeds=Gallery.objects.filter(pk=id)
     feeds.delete()
     return redirect('adminpage')
+
+
 def add(request):
     return render(request,"index.html")
 def logoutuser(request):
@@ -1901,13 +1903,3 @@ def addReview(request, pk):
     
     
     
-    
-@login_required
-def add_to_wishlist(request, product_id):
-    product = Gallery.objects.get(id=product_id)
-    wishlist, created = Wishlist.objects.get_or_create(user=request.user, product=product)
-    if created:
-        return JsonResponse({'status': 'added'})
-    else:
-        wishlist.delete()
-        return JsonResponse({'status': 'removed'}),Gallery,
